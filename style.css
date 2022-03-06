@@ -1,0 +1,512 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Play&display=swap');
+
+*,*::before,*::after{
+    box-sizing: border-box;
+}
+
+:root{
+    --page-background: #3d5a80;
+    --header-background: #293241;
+    --header-transparent: rgba(41, 50, 65, .65);
+    --border-color: #ee6c4d;
+    --project-color: #293241;
+    --text-color: #e0fbfc;
+    --header-height: 150px;
+    --sidebar-width: 250px;
+}
+
+body, html{
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    color: var(--text-color);
+}
+
+
+.container{
+    min-height: 100vh;
+    min-width: 100vw;
+    background-color: #3d5a80;
+    position: relative;
+}
+
+header{
+    background-color: var(--header-background);
+    border-bottom: 3px solid var(--border-color);
+    padding-left: 25px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: fixed;
+    width: 100vw;
+}
+
+header > h1{
+    margin: 0;
+    padding: 0;
+}
+
+.sidebar{
+    background-color: var(--header-background);
+    float: left;
+    position: fixed;
+    overflow: auto;
+    height: calc(100vh - var(--header-height));
+    width: var(--sidebar-width);
+    margin-top: var(--header-height);
+    border-right: 3px solid var(--border-color);
+}
+
+.btn-sidebar{
+    background-color: var(--page-background);
+    margin: 10px;
+    padding: 10px;
+    text-align: center;
+    border: 2px solid var(--border-color);
+    border-radius: 5px;
+}
+
+.project-sidebar{
+    background-color: var(--page-background);
+    margin: 10px;
+    padding: 5px;
+    text-align: left;
+    border: 2px solid var(--border-color);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+hr{
+    border: 1.5px solid var(--border-color);
+}
+
+#new-project{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.add-symbol{
+    font-size: 2rem;
+}
+
+.project-container{
+    margin-left: var(--sidebar-width);
+    width: calc(100vw - var(--sidebar-width));
+    height: calc(100vh - var(--header-height));
+    margin-top: var(--header-height);
+    position: fixed;
+    overflow: auto;
+}
+
+.view-options{
+    display: flex;
+    justify-content: space-around;
+    gap: 25px;
+    align-items: center;
+    height: 50px;
+    position: relative;
+    margin: 25px;
+    margin-top: 10px;
+}
+
+.view-option{
+    border: 2px solid var(--border-color);
+    border-radius: 5px;
+    background-color: var(--header-background);
+    width: 100%;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.project{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    border: 2px solid var(--border-color);
+    border-radius: 5px;
+    margin: 25px;
+    padding: 5px;
+    padding-right: 100px;
+    background-color: var(--project-color);
+    height: 65px;
+}
+
+.project > .icons{
+    position: absolute;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    margin-right: 15px;
+}
+
+.project > .title{
+    font-size: 1.5rem;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    overflow-x: auto;
+}
+
+.project-info{
+    grid-column-start: 1;
+    grid-column-end: 8;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 5px;
+}
+
+.name-container{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.name{
+    font-size: 1.5rem;
+}
+
+.due-date{
+    text-align: right;
+    margin: 0;
+    margin-right: 15px;    
+    padding: 0;
+}
+
+.icons{
+    grid-column-start: 8;
+    grid-column-end: 9;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    font-size: 1.25rem;
+    z-index: 10;
+}
+
+.btn-sidebar:hover{
+    cursor: pointer;
+    transform: scale(1.05);
+    transition: .05s ease-in-out;
+}
+
+.view-option:hover{
+    cursor: pointer;
+    transform: scale(1.025);
+    transition: .05s ease-in-out;
+}
+
+.project:hover{
+    cursor: pointer;
+    background-color: var(--header-transparent);
+}
+
+.icons > i:hover,.delete:hover{
+    transform: scale(1.25);
+    color: red;
+}
+
+/* ---------- MODAL STYLING ---------- */
+
+#modal{
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0,0,0,.75);
+    z-index: 15;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: scale(0);
+}
+
+#modal-info{
+    display: flex;
+    flex-direction: column;
+    background-color: var(--page-background);
+    padding: 25px;
+    border: 2px solid var(--border-color);
+    border-radius: 10px;
+}
+
+#enter-info{
+    font-size: 2rem;
+}
+
+#modal-info > input{
+    height: 40px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+    border-radius: 5px;
+    border: none;
+    padding-left: 10px;
+    padding-right: 10px;
+    overflow: hidden;
+}
+
+#modal-info > .buttons{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 100%;
+    gap: 25px;
+}
+
+#modal-info > .buttons > .button{
+    border: 1px solid white;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+}
+
+.button:hover{
+    cursor: pointer;
+    background-color: var(--text-color);
+    color: var(--page-background);
+}
+
+#modal.active{
+    transform: scale(1);
+}
+
+
+/* ---------- TASK MODAL STYLING ---------- */
+
+
+#task-modal{
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0,0,0,.75);
+    z-index: -15;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: scale(0);
+}
+
+#task-info{
+    border: 2px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    background-color: var(--page-background);
+    border-radius: 10px;
+}
+
+#task-info > input{
+    width: 400px;
+    font-size: 1.1rem;
+    padding: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin: 0;
+    height: 40px;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.task-buttons{
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+    width: 100%;
+}
+
+.task-button{
+    border: 1px solid var(--text-color);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 35px;
+    border-radius: 5px;
+}
+
+.task-button:hover{
+    cursor: pointer;
+    background-color: var(--text-color);
+    color: var(--page-background);
+}
+
+#task-modal.active{
+    transform: scale(1);
+    z-index: 15;
+}
+
+
+/* PROJECT FULL VIEW */
+
+
+.project-full{  
+    border: 2px solid var(--border-color);
+    border-radius: 5px;
+    margin: 25px;
+    padding: 5px;
+    background-color: var(--project-color);
+    height: calc(100vh - 125px - var(--header-height));
+    overflow: auto;
+}
+
+.edit-project{
+    margin: 5px;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.project-info-full{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.title-full{
+    font-size: 1.5rem;
+}
+
+.description-full{
+    font-size: 1.25rem;
+}
+
+.new-task{
+    border: 2px solid var(--border-color);
+    border-radius: 10px;
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 35px;
+}
+
+.new-task:hover{
+    background-color: var(--page-background);
+    cursor: pointer;
+}
+
+.task{
+    border: 3px solid var(--page-background);
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    height: 50px;
+    padding: 5px;
+    margin: 10px;
+    overflow: auto;
+}
+
+.task-name{
+    margin-right: 35px;
+}
+
+.remove-task{
+    position: absolute;
+    right: 0;
+    margin-right: 10px;
+    scale: 2;
+}
+
+.remove-task:hover{
+    color: red;
+    cursor: pointer;
+    transform: scale(1.25);
+}
+
+.task:hover{
+    cursor: pointer;
+    background-color: var(--page-background);
+}
+
+/* ---------- EDIT MODAL STYLING ---------- */
+
+#edit-modal{
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0,0,0,.75);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: -10;
+    transform: scale(0);
+}
+
+#edit-modal.active{
+    transform: scale(1);
+    z-index: 10;
+}
+
+#edit-info{
+    background-color: var(--page-background);
+    border: 2px solid var(--border-color);
+    border-radius: 10px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: relative;
+}
+
+#edit-info > input{
+    width: 300px;
+    height: 35px;
+    border: 2px solid var(--border-color);
+    border-radius: 5px;
+}
+
+.edit-buttons{
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.edit-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid white;
+    width: 100%;
+    height: 35px;
+    border-radius: 5px;
+}
+
+.edit-button:hover{
+    cursor: pointer;
+    color: var(--page-background);
+    background-color: var(--text-color);
+}
+
+
+/* ---------- CALENDAR STYLING ---------- */
+
+
+.calendar{
+    background-color: rgba(0,0,0,.75);
+    width: calc(100vw - var(--sidebar-width));
+    height: calc(100vh - var(--header-height) - 85px);
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+}
+
+.day{
+    border: 1px solid white;
+}

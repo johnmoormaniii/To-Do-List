@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/ff5ae8fa61.js" crossorigin="anonymous"></script>
+    <script type="module" src="index.js" defer></script>
+    <title>To-Do List</title>
+</head>
+<body>
+
+    <div id="modal">
+        <div id="modal-info">
+            <div id="enter-info">Enter Project Information</div>
+            <input type="text" id="project-name" placeholder="Project Name">
+            <input type="text" id="project-description" placeholder="Description">
+            <input type="date" id="project-due-date" placeholder="Due Date">
+            <div class="buttons">
+                <div id="cancel" class="button">Cancel</div>
+                <div id="add-project" class="button">Add Project</div>
+            </div>
+        </div>
+    </div>
+
+<!--    <div id="edit-modal">
+        <div id="edit-info">
+            <input type="text" id="edit-name">
+            <input type="text" id="edit-description">
+            <input type="date" id="edit-date">
+            <div class="edit-buttons">
+                <div class="edit-button" id="edit-cancel">Cancel</div>
+                <div class="edit-button" id="edit-finish">Finish Editing</div>
+            </div>
+        </div>
+
+    </div>
+-->
+    <div id="task-modal">
+        <div id="task-info">
+            <input type="text" class="task-name" id="task-name" placeholder="Enter Task">
+            <div class="task-buttons">
+                <div id="task-cancel" class="task-button">Cancel</div>
+                <div id="add-task" class="task-button">Add Task</div>
+            </div>
+        </div>    
+    </div>
+
+    <div class="container">
+
+        <header>
+            <h1>To-Do List</h1>
+            <h4>Organize your projects, your thoughts, and your life.</h4>
+        </header>
+
+        <div class="sidebar">
+            <div class="btn-sidebar" id="new-project">
+                <div>New Project</div>
+                <div class="add-symbol">+</div>
+            </div>
+            <div class="btn-sidebar" id="all-projects">All Projects</div>
+            <hr>
+            <div class="sidebar-projects">
+                
+            </div>
+
+        </div>
+
+        <div class="project-container">
+            <div class="view-options">
+                <div class="view-option" id="list-view">List View</div>
+                <!--<div class="view-option">2022 Calendar View</div>-->
+            </div>
+
+            <div class="projects">
+            
+                
+
+            </div>
+            
+            </div>
+        </div>
+
+    </div>
+    
+</body>
+</html>
